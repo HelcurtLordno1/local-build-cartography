@@ -1,0 +1,26 @@
+name: summariser
+channels:
+  - conda-forge
+  - anaconda
+  - defaults
+dependencies:
+  - networkx
+  - tinydb
+  - requests
+  - nltk
+  - feedparser
+  - scipy
+  - numpy
+  - bs4
+  - scikit-learn
+  - schedule
+  - pytorch
+  - torchvision
+  - flask
+  - pip
+  - pip:
+      - transformers
+      - python-telegram-bot
+      - word-mover-distance
+prefix: /Users/kappa/opt/miniconda3/envs/summariser
+

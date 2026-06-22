@@ -1,0 +1,10 @@
+[project]
+name = "ban-do-tin"
+version = "0.1.0"
+description = "Civic Intelligence Cartography hackathon scaffold"
+requires-python = ">=3.11"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+

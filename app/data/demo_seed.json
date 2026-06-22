@@ -1,0 +1,234 @@
+{
+  "events": [
+    {
+      "event": {
+        "id": "evt_da_nang_flood_watch",
+        "canonical_title": "Cảnh báo ngập cục bộ tại Đà Nẵng sau mưa lớn",
+        "generated_summary": "Nhiều nguồn ghi nhận mưa lớn gây nguy cơ ngập tại một số tuyến đường thấp trũng ở Đà Nẵng. Nguồn chính thức khuyến nghị người dân kiểm tra cập nhật trước khi di chuyển.",
+        "category": "thoi-tiet",
+        "severity_level": "critical",
+        "geographic_scope": "Đà Nẵng",
+        "latitude": 16.0471,
+        "longitude": 108.2068,
+        "status": "active"
+      },
+      "articles": [
+        {
+          "id": "art_flood_news_1",
+          "source": {"id": "src_vnexpress", "name": "VNExpress", "source_type": "web", "base_url": "https://vnexpress.net", "credibility_base_score": 0.82},
+          "title": "Mưa lớn kéo dài tại miền Trung",
+          "url": "https://example.local/vnexpress/flood",
+          "modality_type": "web",
+          "published_at": "2026-06-20T02:00:00+07:00",
+          "ingested_at": "2026-06-20T02:12:00+07:00",
+          "clean_text": "Mưa lớn kéo dài tại Đà Nẵng làm một số tuyến đường có nguy cơ ngập cục bộ. Chính quyền khuyến cáo người dân theo dõi thông báo mới nhất và hạn chế đi qua vùng thấp trũng.",
+          "category": "thoi-tiet",
+          "extraction_confidence": 0.88,
+          "relationship_type": "primary_report"
+        },
+        {
+          "id": "art_flood_official",
+          "source": {"id": "src_da_nang_portal", "name": "Cổng thông tin Đà Nẵng", "source_type": "government", "base_url": "https://danang.gov.vn", "credibility_base_score": 0.9},
+          "title": "Khuyến cáo phòng tránh ngập sau mưa lớn",
+          "url": "https://example.local/danang/flood-guidance",
+          "modality_type": "pdf",
+          "published_at": "2026-06-20T02:30:00+07:00",
+          "ingested_at": "2026-06-20T02:42:00+07:00",
+          "clean_text": "Cơ quan địa phương khuyến cáo người dân không đi qua điểm ngập sâu, theo dõi thông báo từ phường xã và liên hệ lực lượng chức năng khi có nguy hiểm trực tiếp.",
+          "category": "thoi-tiet",
+          "extraction_confidence": 0.91,
+          "relationship_type": "official_context"
+        },
+        {
+          "id": "art_flood_zalo_signal",
+          "source": {"id": "src_zalo_synthetic", "name": "Zalo screenshot demo", "source_type": "social_screenshot", "base_url": null, "credibility_base_score": 0.25},
+          "title": "Tin nhắn cảnh báo nước dâng nhanh",
+          "url": null,
+          "modality_type": "screenshot",
+          "published_at": "2026-06-20T02:20:00+07:00",
+          "ingested_at": "2026-06-20T02:45:00+07:00",
+          "clean_text": "Ảnh chụp demo cho rằng nước dâng rất nhanh tại một tuyến đường. Nội dung không có nguồn chính thức và cần đối chiếu trước khi chia sẻ.",
+          "category": "thoi-tiet",
+          "extraction_confidence": 0.48,
+          "relationship_type": "social_signal"
+        }
+      ],
+      "consensus_score": 87,
+      "agreed_facts": [
+        "Mưa lớn tạo nguy cơ ngập cục bộ tại Đà Nẵng.",
+        "Có nguồn chính quyền khuyến cáo hạn chế di chuyển qua vùng thấp trũng.",
+        "Tín hiệu xã hội được giữ ở trạng thái chưa xác minh."
+      ],
+      "disputed_points": [
+        {
+          "claim": "Nước dâng rất nhanh tại một tuyến đường cụ thể",
+          "sources_pro": ["Zalo screenshot demo"],
+          "sources_con": ["VNExpress", "Cổng thông tin Đà Nẵng"],
+          "confidence": "low",
+          "note": "Ảnh chụp không đủ metadata và chưa có nguồn độc lập xác nhận."
+        }
+      ],
+      "action_protocol": {
+        "protocol_type": "thoi-tiet",
+        "immediate_actions": ["Tránh tuyến đường thấp trũng nếu không cần thiết.", "Theo dõi cập nhật từ chính quyền địa phương trước khi di chuyển.", "Gọi 113, 114 hoặc 115 nếu có nguy hiểm trực tiếp."],
+        "verification_steps": ["Kiểm tra thời gian cập nhật của nguồn chính thức.", "Đối chiếu ít nhất hai nguồn báo chí hoặc chính quyền.", "Không chia sẻ ảnh chụp chưa rõ vị trí như thông tin đã xác minh."],
+        "legal_tools": ["Cổng thông tin địa phương và thông báo phường xã.", "Kênh cứu hộ/cấp cứu khi có nguy hiểm trực tiếp."],
+        "community_sharing": ["Đà Nẵng có cảnh báo ngập cục bộ, CCS 87/100. Vui lòng kiểm tra thông báo chính quyền trước khi di chuyển và không chia sẻ ảnh chưa xác minh."],
+        "historical_context": ["Các đợt mưa lớn miền Trung thường thay đổi nhanh theo từng phường/xã.", "Ưu tiên thông báo mới nhất hơn ảnh chụp lan truyền."],
+        "status": "generated",
+        "expires_at": null
+      },
+      "archaeology": {
+        "layers": {
+          "current": {"summary": "Nguy cơ ngập cục bộ đang được theo dõi.", "confidence_state": "verified"},
+          "precedent": ["Các đợt mưa lớn trước đây tại miền Trung thường gây ngập theo từng tuyến phố.", "Tin nhắn xã hội hữu ích để phát hiện sớm nhưng cần xác minh."],
+          "legal_framework": ["Quy định phòng chống thiên tai và hướng dẫn của chính quyền địa phương.", "Số khẩn cấp 113, 114, 115 khi có rủi ro trực tiếp."],
+          "simulation": {"next_24h": "Nếu mưa tiếp tục, marker giữ severity critical và cập nhật GCAP.", "risk": "Nếu ảnh chụp lan truyền sai vị trí, disputed point sẽ tăng trọng số."}
+        }
+      }
+    },
+    {
+      "event": {
+        "id": "evt_consumer_scam_warning",
+        "canonical_title": "Cảnh báo lừa đảo hoàn tiền du lịch qua đường link giả",
+        "generated_summary": "Một cụm nguồn cảnh báo người dân không nhập thông tin ngân hàng vào đường link hoàn tiền du lịch không rõ nguồn gốc. Sự kiện phù hợp tạo GCAP về bảo vệ bằng chứng và kênh phản ánh.",
+        "category": "phap-luat",
+        "severity_level": "warning",
+        "geographic_scope": "Việt Nam",
+        "latitude": 15.9,
+        "longitude": 108.3,
+        "status": "active"
+      },
+      "articles": [
+        {
+          "id": "art_scam_news",
+          "source": {"id": "src_tuoitre", "name": "Tuổi Trẻ", "source_type": "web", "base_url": "https://tuoitre.vn", "credibility_base_score": 0.8},
+          "title": "Cảnh giác link hoàn tiền du lịch giả mạo",
+          "url": "https://example.local/tuoitre/scam",
+          "modality_type": "web",
+          "published_at": "2026-06-19T09:10:00+07:00",
+          "ingested_at": "2026-06-19T09:20:00+07:00",
+          "clean_text": "Bài viết ghi nhận một số đường link giả mạo chương trình hoàn tiền du lịch nhằm thu thập thông tin ngân hàng. Người dân được khuyến nghị lưu bằng chứng và báo cáo qua kênh chính thức.",
+          "category": "phap-luat",
+          "extraction_confidence": 0.84,
+          "relationship_type": "primary_report"
+        },
+        {
+          "id": "art_scam_legal",
+          "source": {"id": "src_consumer_ref", "name": "Consumer protection reference", "source_type": "government", "base_url": "https://example.local/legal", "credibility_base_score": 0.76},
+          "title": "Hướng dẫn phản ánh gian lận tiêu dùng",
+          "url": "https://example.local/legal/consumer",
+          "modality_type": "pdf",
+          "published_at": "2026-06-18T10:00:00+07:00",
+          "ingested_at": "2026-06-19T09:22:00+07:00",
+          "clean_text": "Tài liệu hướng dẫn người dân lưu lại tin nhắn, đường link, hóa đơn và liên hệ kênh bảo vệ người tiêu dùng hoặc cơ quan chức năng khi nghi ngờ gian lận.",
+          "category": "phap-luat",
+          "extraction_confidence": 0.86,
+          "relationship_type": "official_context"
+        }
+      ],
+      "consensus_score": 74,
+      "agreed_facts": ["Có cảnh báo về link hoàn tiền giả.", "Người dùng nên bảo vệ thông tin ngân hàng và lưu bằng chứng.", "Có kênh phản ánh chính thức liên quan bảo vệ người tiêu dùng."],
+      "disputed_points": [],
+      "action_protocol": {
+        "protocol_type": "phap-luat",
+        "immediate_actions": ["Không nhập OTP, mật khẩu hoặc số thẻ vào link lạ.", "Chụp lại bằng chứng trước khi xóa tin nhắn.", "Liên hệ ngân hàng nếu đã nhập thông tin."],
+        "verification_steps": ["Kiểm tra domain chính thức của doanh nghiệp.", "Gọi tổng đài được công bố trên website chính thức.", "Tìm cảnh báo từ báo chí hoặc cơ quan chức năng."],
+        "legal_tools": ["Kênh bảo vệ người tiêu dùng.", "Cơ quan công an khi có thiệt hại tài sản."],
+        "community_sharing": ["Cảnh báo link hoàn tiền du lịch giả, CCS 74/100. Không nhập thông tin ngân hàng và hãy kiểm tra nguồn chính thức trước khi chuyển tiếp."],
+        "historical_context": ["Mẫu lừa đảo đường link giả thường tăng trong mùa du lịch hoặc khuyến mãi."],
+        "status": "generated",
+        "expires_at": null
+      }
+    },
+    {
+      "event": {
+        "id": "evt_policy_deadline",
+        "canonical_title": "Nhắc hạn cập nhật hồ sơ hành chính trực tuyến",
+        "generated_summary": "Nguồn chính quyền và báo giải thích ghi nhận mốc hạn cập nhật hồ sơ trực tuyến. Sự kiện có mức độ thông tin, phù hợp checklist giấy tờ.",
+        "category": "chinh-sach",
+        "severity_level": "information",
+        "geographic_scope": "Đà Nẵng",
+        "latitude": 16.0544,
+        "longitude": 108.2022,
+        "status": "active"
+      },
+      "articles": [
+        {
+          "id": "art_policy_pdf",
+          "source": {"id": "src_policy_portal", "name": "Cổng dịch vụ công demo", "source_type": "government", "base_url": "https://example.local/gov", "credibility_base_score": 0.88},
+          "title": "Thông báo cập nhật hồ sơ trực tuyến",
+          "url": "https://example.local/gov/policy-deadline",
+          "modality_type": "pdf",
+          "published_at": "2026-06-17T08:00:00+07:00",
+          "ingested_at": "2026-06-17T08:10:00+07:00",
+          "clean_text": "Thông báo yêu cầu một số nhóm người dân cập nhật hồ sơ hành chính trực tuyến trước hạn. Văn bản nêu rõ nhóm áp dụng, giấy tờ cần chuẩn bị và kênh hỗ trợ.",
+          "category": "chinh-sach",
+          "extraction_confidence": 0.9,
+          "relationship_type": "primary_report"
+        },
+        {
+          "id": "art_policy_explainer",
+          "source": {"id": "src_vietnamnet", "name": "VietnamNet", "source_type": "web", "base_url": "https://vietnamnet.vn", "credibility_base_score": 0.78},
+          "title": "Cách chuẩn bị hồ sơ trước hạn",
+          "url": "https://example.local/vietnamnet/policy",
+          "modality_type": "web",
+          "published_at": "2026-06-17T10:00:00+07:00",
+          "ingested_at": "2026-06-17T10:05:00+07:00",
+          "clean_text": "Bài giải thích các bước chuẩn bị giấy tờ, kiểm tra tài khoản dịch vụ công và lưu ý thời gian xử lý hồ sơ trực tuyến.",
+          "category": "chinh-sach",
+          "extraction_confidence": 0.82,
+          "relationship_type": "corroborating_report"
+        }
+      ],
+      "consensus_score": 77,
+      "agreed_facts": ["Có mốc hạn cập nhật hồ sơ trực tuyến.", "Nguồn chính quyền là nguồn chính cho yêu cầu hành chính.", "Người dân cần kiểm tra nhóm áp dụng trước khi thực hiện."],
+      "disputed_points": []
+    },
+    {
+      "event": {
+        "id": "evt_traffic_bridge_work",
+        "canonical_title": "Điều tiết giao thông quanh khu vực sửa chữa cầu",
+        "generated_summary": "Một bản tin và transcript radio demo ghi nhận điều tiết giao thông quanh khu vực sửa chữa cầu. Người dân nên kiểm tra tuyến thay thế trước khi di chuyển.",
+        "category": "giao-thong",
+        "severity_level": "warning",
+        "geographic_scope": "Đà Nẵng",
+        "latitude": 16.0678,
+        "longitude": 108.2208,
+        "status": "active"
+      },
+      "articles": [
+        {
+          "id": "art_traffic_news",
+          "source": {"id": "src_dantri", "name": "Dân Trí", "source_type": "web", "base_url": "https://dantri.com.vn", "credibility_base_score": 0.76},
+          "title": "Phân luồng quanh khu vực sửa chữa cầu",
+          "url": "https://example.local/dantri/traffic",
+          "modality_type": "web",
+          "published_at": "2026-06-20T06:00:00+07:00",
+          "ingested_at": "2026-06-20T06:10:00+07:00",
+          "clean_text": "Bản tin ghi nhận việc phân luồng giao thông quanh khu vực sửa chữa cầu trong giờ cao điểm. Người dân được khuyến nghị chọn tuyến thay thế.",
+          "category": "giao-thong",
+          "extraction_confidence": 0.8,
+          "relationship_type": "primary_report"
+        },
+        {
+          "id": "art_traffic_audio",
+          "source": {"id": "src_radio_demo", "name": "Radio transcript demo", "source_type": "audio", "base_url": null, "credibility_base_score": 0.62},
+          "title": "Thông báo radio về phân luồng",
+          "url": null,
+          "modality_type": "audio",
+          "published_at": "2026-06-20T06:15:00+07:00",
+          "ingested_at": "2026-06-20T06:20:00+07:00",
+          "clean_text": "Transcript radio demo thông báo lực lượng chức năng điều tiết giao thông và đề nghị người dân tránh khu vực sửa chữa trong khung giờ cao điểm.",
+          "category": "giao-thong",
+          "extraction_confidence": 0.7,
+          "relationship_type": "corroborating_report"
+        }
+      ],
+      "consensus_score": 68,
+      "agreed_facts": ["Có thông tin phân luồng giao thông quanh khu vực sửa chữa.", "Nguồn audio củng cố bản tin nhưng chưa phải văn bản chính thức.", "GCAP chỉ nên khuyến nghị kiểm tra tuyến, không khẳng định chi tiết quá mức."],
+      "disputed_points": []
+    }
+  ]
+}
+

@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bản Đồ Tin</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Civic Intelligence Cartography</p>
+        <h1>Bản Đồ Tin</h1>
+      </div>
+      <div class="top-actions">
+        <input id="search" type="search" placeholder="Search civic events" />
+        <button id="refresh" title="Refresh terrain">↻</button>
+      </div>
+    </header>
+
+    <main class="shell">
+      <aside class="filters">
+        <section>
+          <h2>Date</h2>
+          <select id="date-range">
+            <option value="recent" selected>Today + yesterday</option>
+            <option value="all">All dates</option>
+            <option value="today">Today only</option>
+            <option value="week">Past week</option>
+            <option value="month">Past month</option>
+            <option value="year">Past year</option>
+          </select>
+          <div class="date-grid">
+            <input id="start-date" type="date" aria-label="Start date" />
+            <input id="end-date" type="date" aria-label="End date" />
+          </div>
+        </section>
+        <section class="live-fetch">
+          <h2>Live Sources</h2>
+          <select id="live-source">
+            <option value="all">All configured sources</option>
+          </select>
+          <div class="date-grid">
+            <input id="live-limit" type="number" min="1" max="50" value="8" aria-label="Articles per source" />
+            <button id="live-fetch">Fetch</button>
+          </div>
+          <label><input id="live-full-text" type="checkbox" /> Fetch full text</label>
+          <p id="live-status"></p>
+        </section>
+        <section>
+          <h2>Sections</h2>
+          <select id="section-filter">
+            <option value="all">All sections</option>
+            <option value="thoi-su">Thời sự</option>
+            <option value="chinh-sach">Chính sách</option>
+            <option value="phap-luat">Pháp luật</option>
+            <option value="the-thao">Thể thao</option>
+            <option value="giao-thong">Giao thông</option>
+            <option value="thoi-tiet">Thời tiết</option>
+            <option value="kinh-doanh">Kinh doanh</option>
+            <option value="suc-khoe">Sức khỏe</option>
+            <option value="giao-duc">Giáo dục</option>
+            <option value="cong-nghe">Công nghệ</option>
+            <option value="van-hoa">Văn hóa</option>
+          </select>
+        </section>
+        <section>
+          <h2>Sources</h2>
+          <select id="source-filter">
+            <option value="all">All sources</option>
+          </select>
+          <label><input id="exclude-source" type="checkbox" /> Filter this source out</label>
+        </section>
+        <section>
+          <h2>Read State</h2>
+          <select id="read-filter">
+            <option value="all">All</option>
+            <option value="unread">Haven't read</option>
+            <option value="read">Already read</option>
+          </select>
+        </section>
+        <section>
+          <h2>Severity</h2>
+          <label><input type="checkbox" value="critical" class="severity" checked /> Critical</label>
+          <label><input type="checkbox" value="warning" class="severity" checked /> Warning</label>
+          <label><input type="checkbox" value="information" class="severity" checked /> Information</label>
+        </section>
+        <section>
+          <h2>Confidence</h2>
+          <div id="confidence-list"></div>
+        </section>
+        <section class="ingest">
+          <h2>Quick Ingest</h2>
+          <input id="ingest-title" placeholder="Headline" />
+          <input id="ingest-url" placeholder="Article URL" />
+          <textarea id="ingest-text" placeholder="Paste source text, OCR, or transcript. Leave empty if using URL."></textarea>
+          <select id="ingest-category">
+            <option value="thoi-su">Thời sự</option>
+            <option value="thoi-tiet">Thời tiết</option>
+            <option value="giao-thong">Giao thông</option>
+            <option value="phap-luat">Pháp luật</option>
+            <option value="chinh-sach">Chính sách</option>
+            <option value="the-thao">Thể thao</option>
+            <option value="kinh-doanh">Kinh doanh</option>
+            <option value="suc-khoe">Sức khỏe</option>
+            <option value="giao-duc">Giáo dục</option>
+            <option value="cong-nghe">Công nghệ</option>
+            <option value="van-hoa">Văn hóa</option>
+          </select>
+          <button id="ingest-submit">Submit</button>
+          <p id="ingest-status"></p>
+        </section>
+      </aside>
+
+      <section class="terrain-wrap">
+        <canvas id="terrain" width="1200" height="760"></canvas>
+        <div class="legend">
+          <span><i class="critical"></i> Critical news</span>
+          <span><i class="warning"></i> Warning news</span>
+          <span><i class="information"></i> Information news</span>
+          <span><i class="disputed"></i> Section / source graph</span>
+        </div>
+      </section>
+
+      <aside class="detail">
+        <div id="empty-detail" class="empty">Hold and throw the graph to rotate it, click a section ball, then choose any titled news neuron. You can switch neurons immediately.</div>
+        <article id="event-detail" hidden>
+          <p id="detail-category" class="eyebrow"></p>
+          <h2 id="detail-title"></h2>
+          <p id="detail-date" class="date-line"></p>
+          <div class="score-row">
+            <strong id="detail-score"></strong>
+            <span id="detail-state"></span>
+          </div>
+          <div class="detail-actions">
+            <button id="mark-read">Mark read</button>
+            <button id="delete-event" class="danger">Delete</button>
+          </div>
+          <p id="detail-summary"></p>
+
+          <nav class="tabs">
+            <button data-tab="consensus" class="active">Consensus</button>
+            <button data-tab="action">Action</button>
+            <button data-tab="archaeology">Archaeology</button>
+            <button data-tab="sources">Sources</button>
+            <button data-tab="ai">AI Analysis ✨</button>
+          </nav>
+
+          <section id="tab-consensus" class="tab-panel"></section>
+          <section id="tab-action" class="tab-panel" hidden></section>
+          <section id="tab-archaeology" class="tab-panel" hidden></section>
+          <section id="tab-sources" class="tab-panel" hidden></section>
+          <section id="tab-ai" class="tab-panel" hidden></section>
+        </article>
+      </aside>
+    </main>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>

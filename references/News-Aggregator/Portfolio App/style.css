@@ -1,0 +1,28 @@
+ul {
+    padding-left: 1.5rem;
+  }
+
+h1 {
+    text-align:center;
+}
+
+h5 {
+    text-align:center;
+}
+
+img {
+    border-radius: 50%; 
+    margin-left: 68%; 
+    margin-right: auto; 
+    display: block; 
+}
+
+#MainMenu {
+    visibility: hidden;
+}
+footer {
+    visibility: hidden;
+}
+header {
+    visibility: hidden;
+}
