@@ -1,6 +1,6 @@
-# Bản Đồ Tin — Civic Intelligence Cartography
+# Bản Đồ Tin  Civic Intelligence Cartography
 
-Bản Đồ Tin ("News Map") is a runnable civic-news intelligence prototype for Vietnam-focused public information. It turns publisher RSS items, article URLs, and pasted source text into an interactive event terrain — with source links, conservative confidence scoring, citizen action guidance, an audit trail, and original-source preservation.
+Bản Đồ Tin ("News Map") is a runnable civic-news intelligence prototype for Vietnam-focused public information. It turns publisher RSS items, article URLs, and pasted source text into an interactive event terrain  with source links, conservative confidence scoring, citizen action guidance, an audit trail, and original-source preservation.
 
 This is not a concept document. It is a working **FastAPI + SQLite + browser UI** application: it seeds demo data, fetches live RSS news from real Vietnamese publishers, extracts article text, clusters related reports, scores confidence conservatively, generates civic action cards, and shows exactly where every item came from.
 
@@ -33,17 +33,17 @@ Architecture notes in `architecture/` describe larger production targets such as
 
 This is the pipeline every ingested item runs through (`app/services/news_ingestion.py` and `app/services/pipeline.py`):
 
-1. **Ingest** — read the RSS feed (or a pasted URL/text), preserving the publisher name, feed URL, article URL, RSS GUID, publish timestamp, and retrieval timestamp.
-2. **Extract** — optionally fetch the article HTML and pull the readable body; record extraction confidence and any fetch error.
-3. **Classify** — assign a civic category (weather, traffic, legal, policy, business, health, education, tech, etc.) using deterministic Vietnamese keyword rules.
-4. **Locate** — detect a city hint (Hà Nội, TP.HCM, Đà Nẵng, …) when present; otherwise default to Vietnam scope.
-5. **Cluster** — match against recent events in the same category by title-token similarity (Jaccard, threshold 0.45); corroboration raises the score.
-6. **Score** — compute a conservative consensus score from source count, extraction confidence, official-source presence, and disputed state.
-7. **Summarize** — generate an executive summary, key takeaways, per-story details, and inferred sentiment.
-8. **Debate** — separate agreed facts from disputed points, with a media/policy/skeptic agent trace.
-9. **Action (GCAP v2)** — extract citizen-facing immediate actions and verification steps directly from the text, fall back to curated category defaults, and point at the right official channel.
-10. **Archaeology** — add current context, precedent prompts, legal-framework prompts, and a 24h risk simulation.
-11. **Persist** — store source, article, event, debate, action protocol, and archaeology as auditable records.
+1. **Ingest**  read the RSS feed (or a pasted URL/text), preserving the publisher name, feed URL, article URL, RSS GUID, publish timestamp, and retrieval timestamp.
+2. **Extract**  optionally fetch the article HTML and pull the readable body; record extraction confidence and any fetch error.
+3. **Classify**  assign a civic category (weather, traffic, legal, policy, business, health, education, tech, etc.) using deterministic Vietnamese keyword rules.
+4. **Locate**  detect a city hint (Hà Nội, TP.HCM, Đà Nẵng, …) when present; otherwise default to Vietnam scope.
+5. **Cluster**  match against recent events in the same category by title-token similarity (Jaccard, threshold 0.45); corroboration raises the score.
+6. **Score**  compute a conservative consensus score from source count, extraction confidence, official-source presence, and disputed state.
+7. **Summarize**  generate an executive summary, key takeaways, per-story details, and inferred sentiment.
+8. **Debate**  separate agreed facts from disputed points, with a media/policy/skeptic agent trace.
+9. **Action (GCAP v2)**  extract citizen-facing immediate actions and verification steps directly from the text, fall back to curated category defaults, and point at the right official channel.
+10. **Archaeology**  add current context, precedent prompts, legal-framework prompts, and a 24h risk simulation.
+11. **Persist**  store source, article, event, debate, action protocol, and archaeology as auditable records.
 
 ---
 
@@ -56,10 +56,10 @@ This is the pipeline every ingested item runs through (`app/services/news_ingest
    - click a **titled news neuron** to open the event,
    - drag or throw the graph to rotate it.
 4. The right panel shows four tabs:
-   - **Consensus** — agreed facts, disputed points, and agent trace,
-   - **Action** — immediate actions, verification steps, and community-sharing guidance,
-   - **Archaeology** — current context, precedent, legal framework, and risk simulation,
-   - **Sources** — original article links, source names, timestamps, extracted text, and extraction confidence.
+   - **Consensus**  agreed facts, disputed points, and agent trace,
+   - **Action**  immediate actions, verification steps, and community-sharing guidance,
+   - **Archaeology**  current context, precedent, legal framework, and risk simulation,
+   - **Sources**  original article links, source names, timestamps, extracted text, and extraction confidence.
 5. Use **Live Sources** to fetch current news from configured RSS feeds.
 6. Use **Quick Ingest** to submit your own article URL or pasted source text.
 7. Use **Mark read** and **Delete** to manage the local event list.
@@ -74,7 +74,7 @@ The app separates **demo data** (offline, hand-built) from **live data** (real p
 
 ### Why these sources are credible and reliable
 
-The live sources are the highest-traffic, most authoritative mainstream Vietnamese news portals — major licensed electronic newspapers, the official government newspaper, the national news agency, the Party central organ, and national television. Each carries a `credibility_base_score` used by the consensus engine; **official / government-style sources are weighted higher** and can lift an event toward `verified`, while a single social screenshot is treated as unverified.
+The live sources are the highest-traffic, most authoritative mainstream Vietnamese news portals  major licensed electronic newspapers, the official government newspaper, the national news agency, the Party central organ, and national television. Each carries a `credibility_base_score` used by the consensus engine; **official / government-style sources are weighted higher** and can lift an event toward `verified`, while a single social screenshot is treated as unverified.
 
 The full source list with categorization and strategy notes lives in `data/websites_scrape.md`.
 
@@ -84,8 +84,8 @@ Defined in `app/services/news_ingestion.py`:
 
 | Key | Publisher | Website | RSS feed | Credibility |
 | --- | --- | --- | --- | --- |
-| `vnexpress` | VnExpress — the most-read online-only newspaper in Vietnam | https://vnexpress.net | https://vnexpress.net/rss/tin-moi-nhat.rss | 0.82 |
-| `tuoitre` | Tuổi Trẻ Online — major breaking-news publisher | https://tuoitre.vn | https://tuoitre.vn/rss/tin-moi-nhat.rss | 0.80 |
+| `vnexpress` | VnExpress  the most-read online-only newspaper in Vietnam | https://vnexpress.net | https://vnexpress.net/rss/tin-moi-nhat.rss | 0.82 |
+| `tuoitre` | Tuổi Trẻ Online  major breaking-news publisher | https://tuoitre.vn | https://tuoitre.vn/rss/tin-moi-nhat.rss | 0.80 |
 
 ### Additional sources (enabled via `data/websites_scrape.md`)
 
@@ -107,7 +107,7 @@ The ingestion service also knows the RSS feeds for these domains. When a domain 
 | VnEconomy (Vietnam Economic Times) | https://vneconomy.vn | https://vneconomy.vn/rss/tin-moi.rss |
 | Báo Đầu tư | https://baodautu.vn | https://baodautu.vn/rss/home.rss |
 
-**Official State & National Media** (highest credibility tier — government / national agency):
+**Official State & National Media** (highest credibility tier  government / national agency):
 
 | Publisher | Website | Known RSS feed |
 | --- | --- | --- |
@@ -124,7 +124,7 @@ The ingestion service also knows the RSS feeds for these domains. When a domain 
 | Znews | https://znews.vn | https://znews.vn/rss.html |
 | Soha News | https://soha.vn | https://soha.vn/rss.htm |
 
-> **Strategy note:** the app prefers structured RSS feeds over HTML scraping, because RSS avoids rate limits and Cloudflare blocks and gives clean, minute-by-minute updates. Aggregators such as Báo Mới (`baomoi.com`) are deliberately avoided — scraping an aggregator causes deduplication headaches, so the app goes straight to the primary publishers listed above.
+> **Strategy note:** the app prefers structured RSS feeds over HTML scraping, because RSS avoids rate limits and Cloudflare blocks and gives clean, minute-by-minute updates. Aggregators such as Báo Mới (`baomoi.com`) are deliberately avoided  scraping an aggregator causes deduplication headaches, so the app goes straight to the primary publishers listed above.
 
 ### Demo seed data
 
@@ -244,7 +244,7 @@ curl -X POST "http://127.0.0.1:8000/api/ingest/live-news?source=all&limit=5&fetc
 curl http://127.0.0.1:8000/api/news/sources
 ```
 
-> The `scripts/fetch_live_news.py` CLI accepts the built-in keys `vnexpress` and `tuoitre`. To fetch from the additional sources above, use the running API with `source=<key>` or `source=all` — the API loads every domain listed in `data/websites_scrape.md`.
+> The `scripts/fetch_live_news.py` CLI accepts the built-in keys `vnexpress` and `tuoitre`. To fetch from the additional sources above, use the running API with `source=<key>` or `source=all`  the API loads every domain listed in `data/websites_scrape.md`.
 
 More data-source details are in `How_get_data.md`.
 
@@ -287,24 +287,24 @@ LLM responses are tagged with the selected event id, source title, source articl
 
 ## API Surface
 
-- `GET /` — browser UI.
-- `GET /health` — service health check.
-- `GET /api/llm/status` — inspect local Ollama readiness, configured model, and setup hints.
-- `GET /api/events` — list terrain-ready events.
-- `GET /api/events?date_range=today|week|month|year|all|recent` — filter by date window.
-- `GET /api/events?start_date=2026-06-10&end_date=2026-06-21` — filter by article dates.
-- `GET /api/events?category=thoi-tiet&read_state=unread&q=mua` — filter by category, read state, and query.
-- `GET /api/events/{event_id}` — event, articles, debate, action protocol, and archaeology.
-- `GET /api/events/{event_id}/llm-deepdive` — lazily generate or read cached AI civic analysis for one event; falls back to deterministic analysis if the local LLM is disabled or unavailable.
-- `PATCH /api/events/{event_id}/read?is_read=true` — mark an event read or unread.
-- `DELETE /api/events/{event_id}` — soft-delete an event.
-- `POST /api/ingest/multi-modal` — ingest normalized article/source text or URL.
-- `POST /api/ingest/live-news` — fetch publisher RSS and ingest results.
-- `GET /api/news/sources` — list configured news sources.
-- `GET /api/debate/consensus/{event_id}` — inspect consensus / debate trace.
-- `POST /api/action/generate/{event_id}` — generate or refresh action card.
-- `GET /api/archaeology/drill/{event_id}` — inspect archaeology layers.
-- `WS /terrain/stream` — stream terrain snapshots every 8 seconds.
+- `GET /`  browser UI.
+- `GET /health`  service health check.
+- `GET /api/llm/status`  inspect local Ollama readiness, configured model, and setup hints.
+- `GET /api/events`  list terrain-ready events.
+- `GET /api/events?date_range=today|week|month|year|all|recent`  filter by date window.
+- `GET /api/events?start_date=2026-06-10&end_date=2026-06-21`  filter by article dates.
+- `GET /api/events?category=thoi-tiet&read_state=unread&q=mua`  filter by category, read state, and query.
+- `GET /api/events/{event_id}`  event, articles, debate, action protocol, and archaeology.
+- `GET /api/events/{event_id}/llm-deepdive`  lazily generate or read cached AI civic analysis for one event; falls back to deterministic analysis if the local LLM is disabled or unavailable.
+- `PATCH /api/events/{event_id}/read?is_read=true`  mark an event read or unread.
+- `DELETE /api/events/{event_id}`  soft-delete an event.
+- `POST /api/ingest/multi-modal`  ingest normalized article/source text or URL.
+- `POST /api/ingest/live-news`  fetch publisher RSS and ingest results.
+- `GET /api/news/sources`  list configured news sources.
+- `GET /api/debate/consensus/{event_id}`  inspect consensus / debate trace.
+- `POST /api/action/generate/{event_id}`  generate or refresh action card.
+- `GET /api/archaeology/drill/{event_id}`  inspect archaeology layers.
+- `WS /terrain/stream`  stream terrain snapshots every 8 seconds.
 
 ---
 
@@ -343,13 +343,13 @@ CIVIC_INTELLIGENCE_CARTOGRAPHY/
 
 Key implementation files:
 
-- `app/main.py` — FastAPI routes and startup.
-- `app/static/` — browser UI: filters, live-fetch controls, terrain graph, and detail tabs.
-- `app/services/news_ingestion.py` — RSS source loading, RSS parsing, date filtering, article HTML extraction, and feed discovery.
-- `app/services/pipeline.py` — article ingest, URL extraction, clustering, scoring, summary, debate, action cards (GCAP v2), and archaeology.
-- `app/services/llm_enrichment.py` — lazy local-Ollama event analysis with a deterministic fallback and cached results.
-- `app/services/repository.py` — SQLite persistence and event queries.
-- `tests/test_pipeline.py` — core behavior tests.
+- `app/main.py`  FastAPI routes and startup.
+- `app/static/`  browser UI: filters, live-fetch controls, terrain graph, and detail tabs.
+- `app/services/news_ingestion.py`  RSS source loading, RSS parsing, date filtering, article HTML extraction, and feed discovery.
+- `app/services/pipeline.py`  article ingest, URL extraction, clustering, scoring, summary, debate, action cards (GCAP v2), and archaeology.
+- `app/services/llm_enrichment.py`  lazy local-Ollama event analysis with a deterministic fallback and cached results.
+- `app/services/repository.py`  SQLite persistence and event queries.
+- `tests/test_pipeline.py`  core behavior tests.
 
 ---
 
